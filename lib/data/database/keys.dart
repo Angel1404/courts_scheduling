@@ -1,0 +1,1 @@
+const courtKey = "COURT";
