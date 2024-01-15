@@ -17,9 +17,10 @@ class LocalCourts {
     }
   }
 
-  Future<BaseResponse<List<CourtModel>>> get() async {
+  Future<BaseResponse<List<CourtModel>>> get({FlutterSecureStorage? storage}) async {
     try {
-      final data = await _secureStorage.read(key: courtKey);
+      final secureStorage = storage ?? _secureStorage;
+      final data = await secureStorage.read(key: courtKey);
       return BaseResponse(data: data == null ? [] : courtModelListFromJson(data));
     } catch (e) {
       return BaseResponse(isError: true, errorText: e.toString());
